@@ -37,7 +37,7 @@ async function createTask(req, res) {
     }
 
     const task = await TasksModel.createTask(title, description, req.user._id);
-    return res.status(201).send(formatTask(task));
+    return res.status(201).send({ task: formatTask(task) });
   } catch (error) {
     console.error(error);
     res.status(500).send({ error: "Internal Server Error" });
@@ -94,7 +94,7 @@ async function deleteTask(req, res) {
     }
 
     await TasksModel.deleteTask(taskId);
-    res.send(formatTask(taskToDelete));
+    res.send({ task: formatTask(taskToDelete) });
   } catch (error) {
     console.log(error);
     res.status(500).send({ error: "Internal Server Error" });

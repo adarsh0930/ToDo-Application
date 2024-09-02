@@ -50,10 +50,10 @@ async function login(req, res) {
       },
     };
 
-    res.send({ data: responseData });
+    res.send(responseData);
   } catch (error) {
     console.error("Error during Login: ", error);
-    res.status(500).send();
+    res.status(500).send({ error: "Internal Server Error" });
   }
 }
 

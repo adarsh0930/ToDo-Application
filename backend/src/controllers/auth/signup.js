@@ -39,12 +39,10 @@ async function signUp(req, res) {
     const user = { id: userId, name, email };
 
     res.status(200);
-    res.send({ data: { user } });
+    res.send({ user });
   } catch (error) {
     console.error(error);
-    res.status(500).send({
-      error: "Internal Server Error",
-    });
+    res.status(500).send({ error: "Internal Server Error" });
   }
 }
 
