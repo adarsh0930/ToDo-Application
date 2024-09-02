@@ -1,9 +1,9 @@
-const { updateUserToken } = require("../../models/user");
+const { deleteUserToken } = require("../../models/user");
 
 async function logout(req, res) {
   try {
     const { user, token } = req;
-    await updateUserToken(user, token);
+    await deleteUserToken(user, token);
     return res.status(200).send("User Logged Out Successfully.");
   } catch (error) {
     console.error(error);

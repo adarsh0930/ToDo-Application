@@ -1,5 +1,5 @@
-const client = require("./db");
 const { ObjectId } = require("mongodb");
+const client = require("./db");
 
 const dbName = process.env.DATABASE;
 const db = client.db(dbName);
@@ -7,13 +7,13 @@ const users = db.collection("users");
 
 async function createUser(email, name, password) {
   const user = { name, email, password, tokens: [] };
-  const result = await users.insertOne(user);
-  return result.insertedId;
+  const newUser = await users.insertOne(user);
+  return newUser.insertedId;
 }
 
 async function getUserByEmail(email) {
-  const result = await users.findOne({ email });
-  return result;
+  const user = await users.findOne({ email });
+  return user;
 }
 
 async function getUserById(_id) {
@@ -30,7 +30,7 @@ function saveLoginToken(userId, token) {
   );
 }
 
-async function updateUserToken(user, token) {
+async function deleteUserToken(user, token) {
   const filteredTokens = user.tokens.filter((t) => t !== token);
   updatedTokens = {
     $set: {
@@ -45,7 +45,7 @@ module.exports = {
   getUserByEmail,
   saveLoginToken,
   getUserById,
-  updateUserToken,
+  deleteUserToken,
 };
 
 // id, email, name, password (hashed), tokens, createdAt, updatedAt

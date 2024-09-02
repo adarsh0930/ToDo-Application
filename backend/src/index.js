@@ -4,12 +4,14 @@ const bodyParser = require("body-parser");
 
 const mongoClient = require("./models/db");
 const authRoutes = require("./routes/auth");
+const taskRoutes = require("./routes/task");
 
 async function start() {
   const app = express();
   app.use(bodyParser.json());
 
   app.use("/users", authRoutes);
+  app.use("/tasks", taskRoutes);
 
   await mongoClient.connect();
 
