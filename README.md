@@ -26,7 +26,7 @@
 
 ## Project Structure
 
-.
+```
 ├── README.md
 ├── backend
 │ ├── README.md
@@ -75,3 +75,4 @@
 ├── logo.svg
 ├── reportWebVitals.js
 └── setupTests.js
+```
